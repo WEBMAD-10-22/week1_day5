@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOP</title>
+</head>
+
+<body>
+    <script>
+
+        // 1) OOP-------------------------
+
+        const player = {
+            lives: 3,
+            pos: {
+                x: 10,
+                y: 10,
+            },
+            weapon: 'Destructuring',
+            isAlive: true,
+            canJump: true,
+            級: 2,
+            jump() {
+                console.log('ESTOY SALTANDO CON DESTRUCTURACIÓN???')
+            },
+        }
+
+        const { lives, weapon, isAlive, canJump, 級, jump } = player
+
+        jump()
+
+        console.log('==>', 級)
+
+        // 2) ARRAY PROTOTYPE METHODS
+
+        const numbers = [1, 2, 3]
+
+        // 3) THIS-------------------------
+
+        const player2 = {
+            lives: 3,
+            pos: {
+                x: 10,
+                y: 10,
+            },
+            weapon: 'Destructuring',
+            isAlive: true,
+            canJump: true,
+            級: 2,
+            jump() {
+                this.pos.y += 5
+                console.log(this.pos.y)
+            },
+        }
+
+
+        player.jump()
+
+        window.console.log("TÚ QUIEN ERES????", this)
+
+        // 4) CLASSES
+
+        class Player {
+            constructor(name, color, x, y, weapon, 級) {
+                this.lives = 7
+                this.isAlive = true
+                this.canJump = true
+                this.name = name
+                this.weapon = weapon
+                this.級 = 級
+                this.posX = x
+                this.posY = y
+            }
+
+            jump() {
+                this.posY += 10
+                console.log(this.posY)
+            }
+
+            shoot() {
+                console.log('piiu piuu')
+            }
+        }
+
+        const mainPlayer = new Player('Larisa', 'Azul', 10, 10, 'Gato', 1)
+        const secondPlayer = new Player('Tito', 'Morado', 9, 9, 'Palo', 3)
+
+        // console.log("ES ESTA LARISA ==>", mainPlayer)
+        mainPlayer.jump()
+        secondPlayer.jump()
+        // console.log("ES ESTE TITO ==>", secondPlayer)
+
+        // INHERITANCE
+
+        class Animal {
+            constructor(name, mainColor, sound) {
+                this.name = name
+                this.mainColor = mainColor
+                this.sound = sound
+            }
+            scream() {
+                console.log(`${this.sound}`)
+            }
+        }
+
+        class Cat extends Animal {
+            constructor(name, mainColor, sound, nbOfLegs) {
+                // `super` refers to the constructor of the parent (Animal)
+                // with super Cat gets all the attributes and methods of the Animal class
+                super(name, mainColor, sound)
+                this.nbOfLegs = nbOfLegs // <== a new attribute, just for cats
+            }
+
+        }
+
+        const garfield = new Cat('Garfield', 'Naranja', 'Grrrr', 5)
+        garfield.scream()
+
+    </script>
+</body>
+
+</html>
